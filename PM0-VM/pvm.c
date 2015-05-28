@@ -11,7 +11,7 @@ struct Instruction {
     int op; // opcode
     int l; // L
     int m; // M
-    };
+};
 
 struct Instruction code[MAX_CODE_LENGTH];
 struct Instruction ir;
@@ -19,42 +19,18 @@ int stack[MAX_STACK_HEIGHT];
 int sp,bp,pc = 0;
 
 //Gets the optext for the given opcode
-char* getOpText(int opcode){
-    char *optext;
-    switch (opcode) {
-        case 1:
-            optext = "lit";
-            break;
-        case 2:
-            optext = "opr";
-            break;
-        case 3:
-            optext = "lod";
-            break;
-        case 4:
-            optext = "sto";
-            break;
-        case 5:
-            optext = "cal";
-            break;
-        case 6:
-            optext = "inc";
-            break;
-        case 7:
-            optext = "jmp";
-            break;
-        case 8:
-            optext = "jpc";
-            break;
-        case 9:
-            optext = "sio";
-            break;
-        default:
-            optext = "ERR";
-            break;
-    }
-    return optext;
-}
+const char *OpText[10] = {
+    "ERR",
+    "lit",
+    "opr",
+    "lod",
+    "sto",
+    "cal",
+    "inc",
+    "jmp",
+    "jpc",
+    "sio"
+};
 
 int main()
 {
@@ -92,7 +68,7 @@ int main()
     // Write the input to file
     for (i=0; i<numInstructions; i++){
         fprintf(fpw, "%d\t", i);
-        fprintf(fpw, "%s\t", getOpText(code[i].op));
+        fprintf(fpw, "%s\t", OpText[code[i].op]);
         fprintf(fpw, "%d\t", code[i].l);
         fprintf(fpw, "%d\n", code[i].m);
     }
@@ -115,7 +91,7 @@ int main()
 
         halt = execute(halt);
 
-        fprintf(fpw, "%s\t%d\t%d\t%d\t%d\t%d\t", getOpText(ir.op), ir.l, ir.m, pc, bp, sp);
+        fprintf(fpw, "%s\t%d\t%d\t%d\t%d\t%d\t", OpText[ir.op], ir.l, ir.m, pc, bp, sp);
         for (i=1; i<=sp; i++){
             fprintf(fpw, "%d ", stack[i]);
             if (i%7 == 0 && sp>7) //TAKE A SECOND LOOK AT THIS!!!!!!!!!!!!!!!!!!!!!!!!!!
