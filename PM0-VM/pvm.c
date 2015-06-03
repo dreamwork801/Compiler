@@ -94,7 +94,7 @@ int main()
         fprintf(fpw, "%s\t%d\t%d\t%d\t%d\t%d\t", OpText[ir.op], ir.l, ir.m, pc, bp, sp);
         for (i=1; i<=sp; i++){
             fprintf(fpw, "%d ", stack[i]);
-            if (i%7 == 0 && sp>7) //TAKE A SECOND LOOK AT THIS!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (i%7 == 0 && sp>7)
                 fprintf(fpw, "| ");
         }
         fprintf(fpw, "\n");
