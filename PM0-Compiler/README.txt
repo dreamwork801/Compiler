@@ -5,7 +5,6 @@ COP 3402
 Summer C 2015
 
 Execution instructions. 
-Extract all files in the zip file.
 
 Open terminal and go to directory containing the source files and input file.
 
